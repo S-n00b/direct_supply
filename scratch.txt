@@ -15,4 +15,4 @@ Matching Algo:
     - next, if possible, determine cooking/prep method/variant (second item in description)
     - for edge case examples like chicken breast, determine cooking method is sauteed by deducing from recipe name "Chicken stir Fry", which requires matching and ranking prep methods
     - return all possible options to align with ingredient and prep method, ranking most applicable first
-    - select best fit record from macro
+    - select best fit record from macro.csv
