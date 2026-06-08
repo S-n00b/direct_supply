@@ -10,6 +10,213 @@
       "soy sauce": 60.0,
       "garlic": 10.0,
       "ginger": 5.0
+    },
+    "nutrition": {
+      "total": {
+        "calories": 960.93,
+        "protein": 72.65,
+        "carbs": 54.79,
+        "fat": 83.14
+      },
+      "perServing": {
+        "calories": 480.46,
+        "protein": 36.33,
+        "carbs": 27.39,
+        "fat": 41.57
+      },
+      "byIngredient": [
+        {
+          "name": "olive oil",
+          "grams": 30.0,
+          "fdc_id": "1750351",
+          "matchedDescription": "Oil, olive, extra light",
+          "confidence": 1.0,
+          "calories": 0.0,
+          "protein": 0.0,
+          "carbs": 0.0,
+          "fat": 27.88,
+          "alternatives": [
+            {
+              "fdc_id": "748608",
+              "matchedDescription": "Oil, olive, extra virgin",
+              "confidence": 1.0
+            },
+            {
+              "fdc_id": "167737",
+              "matchedDescription": "Oil, corn, peanut, and olive",
+              "confidence": 1.0
+            },
+            {
+              "fdc_id": "171413",
+              "matchedDescription": "Oil, olive, salad or cooking",
+              "confidence": 1.0
+            }
+          ]
+        },
+        {
+          "name": "chicken breast",
+          "grams": 200.0,
+          "fdc_id": "2341377",
+          "matchedDescription": "Chicken breast, sauteed, skin eaten",
+          "confidence": 1.0,
+          "calories": 412.0,
+          "protein": 51.44,
+          "carbs": 0.0,
+          "fat": 21.24,
+          "alternatives": [
+            {
+              "fdc_id": "2341378",
+              "matchedDescription": "Chicken breast, sauteed, skin not eaten",
+              "confidence": 1.0
+            },
+            {
+              "fdc_id": "171078",
+              "matchedDescription": "Chicken, broilers or fryers, breast, meat only, cooked, fried",
+              "confidence": 1.0
+            },
+            {
+              "fdc_id": "171476",
+              "matchedDescription": "Chicken, broilers or fryers, breast, meat and skin, cooked, fried, flour",
+              "confidence": 1.0
+            }
+          ]
+        },
+        {
+          "name": "broccoli florets",
+          "grams": 500.0,
+          "fdc_id": "170379",
+          "matchedDescription": "Broccoli, raw",
+          "confidence": 0.97,
+          "calories": 166.2,
+          "protein": 12.98,
+          "carbs": 31.58,
+          "fat": 1.72,
+          "alternatives": [
+            {
+              "fdc_id": "2345151",
+              "matchedDescription": "Broccoli, raw",
+              "confidence": 0.97
+            },
+            {
+              "fdc_id": "321900",
+              "matchedDescription": "Broccoli, raw",
+              "confidence": 0.97
+            },
+            {
+              "fdc_id": "747447",
+              "matchedDescription": "Broccoli, raw",
+              "confidence": 0.97
+            }
+          ]
+        },
+        {
+          "name": "red bell pepper",
+          "grams": 250.0,
+          "fdc_id": "168550",
+          "matchedDescription": "Peppers, sweet, red, sauteed",
+          "confidence": 1.0,
+          "calories": 332.5,
+          "protein": 2.6,
+          "carbs": 16.43,
+          "fat": 31.88,
+          "alternatives": [
+            {
+              "fdc_id": "2345321",
+              "matchedDescription": "Pepper, sweet, red, raw",
+              "confidence": 1.0
+            },
+            {
+              "fdc_id": "170108",
+              "matchedDescription": "Peppers, sweet, red, raw",
+              "confidence": 1.0
+            },
+            {
+              "fdc_id": "170515",
+              "matchedDescription": "Peppers, sweet, red, cooked, boiled, drained, with salt",
+              "confidence": 1.0
+            }
+          ]
+        },
+        {
+          "name": "soy sauce",
+          "grams": 60.0,
+          "fdc_id": "2342917",
+          "matchedDescription": "Soy sauce",
+          "confidence": 1.0,
+          "calories": 31.8,
+          "protein": 4.88,
+          "carbs": 2.96,
+          "fat": 0.34,
+          "alternatives": [
+            {
+              "fdc_id": "2342918",
+              "matchedDescription": "Soy sauce, reduced sodium",
+              "confidence": 1.0
+            },
+            {
+              "fdc_id": "174278",
+              "matchedDescription": "Soy sauce made from soy (tamari)",
+              "confidence": 1.0
+            },
+            {
+              "fdc_id": "2345806",
+              "matchedDescription": "Soy based sauce, for use with vegetables",
+              "confidence": 1.0
+            }
+          ]
+        },
+        {
+          "name": "garlic",
+          "grams": 10.0,
+          "fdc_id": "1104647",
+          "matchedDescription": "Garlic, raw",
+          "confidence": 0.98,
+          "calories": 14.43,
+          "protein": 0.66,
+          "carbs": 2.93,
+          "fat": 0.04,
+          "alternatives": [
+            {
+              "fdc_id": "169230",
+              "matchedDescription": "Garlic, raw",
+              "confidence": 0.98
+            },
+            {
+              "fdc_id": "2345306",
+              "matchedDescription": "Garlic, raw",
+              "confidence": 0.98
+            },
+            {
+              "fdc_id": "2345455",
+              "matchedDescription": "Garlic, cooked",
+              "confidence": 0.9
+            }
+          ]
+        },
+        {
+          "name": "ginger",
+          "grams": 5.0,
+          "fdc_id": "169231",
+          "matchedDescription": "Ginger root, raw",
+          "confidence": 1.0,
+          "calories": 4.0,
+          "protein": 0.09,
+          "carbs": 0.89,
+          "fat": 0.04,
+          "alternatives": [
+            {
+              "fdc_id": "2345609",
+              "matchedDescription": "Ginger root, pickled",
+              "confidence": 1.0
+            },
+            {
+              "fdc_id": "169765",
+              "matchedDescription": "Ginger root, pickled, canned, with artificial sweetener",
+              "confidence": 0.93
+            }
+          ]
+        }
+      ]
     }
   },
   {
@@ -23,6 +230,192 @@
       "olive oil": 15.0,
       "small corn tortillas": 150.0,
       "Salt and pepper (to taste)": 3.0
+    },
+    "nutrition": {
+      "total": {
+        "calories": 504.2,
+        "protein": 22.29,
+        "carbs": 73.91,
+        "fat": 28.4
+      },
+      "perServing": {
+        "calories": 504.2,
+        "protein": 22.29,
+        "carbs": 73.91,
+        "fat": 28.4
+      },
+      "byIngredient": [
+        {
+          "name": "large eggs",
+          "grams": 100.0,
+          "fdc_id": "748967",
+          "matchedDescription": "Eggs, Grade A, Large, egg whole",
+          "confidence": 1.0,
+          "calories": 148.0,
+          "protein": 12.4,
+          "carbs": 0.96,
+          "fat": 9.96,
+          "alternatives": [
+            {
+              "fdc_id": "2342632",
+              "matchedDescription": "Egg, whole, fried with margarine",
+              "confidence": 1.0
+            },
+            {
+              "fdc_id": "2342636",
+              "matchedDescription": "Egg, whole, fried with cooking spray",
+              "confidence": 1.0
+            },
+            {
+              "fdc_id": "2342633",
+              "matchedDescription": "Egg, whole, fried with oil",
+              "confidence": 1.0
+            }
+          ]
+        },
+        {
+          "name": "diced onion",
+          "grams": 40.0,
+          "fdc_id": "790646",
+          "matchedDescription": "Onions, yellow, raw",
+          "confidence": 1.0,
+          "calories": 15.2,
+          "protein": 0.33,
+          "carbs": 3.44,
+          "fat": 0.02,
+          "alternatives": [
+            {
+              "fdc_id": "170004",
+              "matchedDescription": "Onions, yellow, sauteed",
+              "confidence": 1.0
+            }
+          ]
+        },
+        {
+          "name": "diced tomato",
+          "grams": 50.0,
+          "fdc_id": "170457",
+          "matchedDescription": "Tomatoes, red, ripe, raw, year round average",
+          "confidence": 1.0,
+          "calories": 9.0,
+          "protein": 0.44,
+          "carbs": 1.95,
+          "fat": 0.1,
+          "alternatives": []
+        },
+        {
+          "name": "spinach leaves",
+          "grams": 20.0,
+          "fdc_id": "168462",
+          "matchedDescription": "Spinach, raw",
+          "confidence": 1.0,
+          "calories": 5.0,
+          "protein": 0.57,
+          "carbs": 0.6,
+          "fat": 0.1,
+          "alternatives": [
+            {
+              "fdc_id": "2345120",
+              "matchedDescription": "Spinach, raw",
+              "confidence": 1.0
+            },
+            {
+              "fdc_id": "168440",
+              "matchedDescription": "New Zealand spinach, raw",
+              "confidence": 1.0
+            },
+            {
+              "fdc_id": "168438",
+              "matchedDescription": "Mustard spinach, (tendergreen), raw",
+              "confidence": 1.0
+            }
+          ]
+        },
+        {
+          "name": "olive oil",
+          "grams": 15.0,
+          "fdc_id": "1750351",
+          "matchedDescription": "Oil, olive, extra light",
+          "confidence": 1.0,
+          "calories": 0.0,
+          "protein": 0.0,
+          "carbs": 0.0,
+          "fat": 13.94,
+          "alternatives": [
+            {
+              "fdc_id": "748608",
+              "matchedDescription": "Oil, olive, extra virgin",
+              "confidence": 1.0
+            },
+            {
+              "fdc_id": "167737",
+              "matchedDescription": "Oil, corn, peanut, and olive",
+              "confidence": 1.0
+            },
+            {
+              "fdc_id": "171413",
+              "matchedDescription": "Oil, olive, salad or cooking",
+              "confidence": 1.0
+            }
+          ]
+        },
+        {
+          "name": "small corn tortillas",
+          "grams": 150.0,
+          "fdc_id": "2343303",
+          "matchedDescription": "Tortilla, corn",
+          "confidence": 1.0,
+          "calories": 327.0,
+          "protein": 8.55,
+          "carbs": 66.96,
+          "fat": 4.28,
+          "alternatives": [
+            {
+              "fdc_id": "169829",
+              "matchedDescription": "Tortilla, blue corn, Sakwavikaviki (Hopi)",
+              "confidence": 1.0
+            },
+            {
+              "fdc_id": "168116",
+              "matchedDescription": "Snacks, tortilla chips, unsalted, white corn",
+              "confidence": 0.74
+            },
+            {
+              "fdc_id": "167558",
+              "matchedDescription": "Snacks, tortilla chips, plain, white corn, salted",
+              "confidence": 0.74
+            }
+          ]
+        },
+        {
+          "name": "Salt and pepper (to taste)",
+          "grams": 3.0,
+          "fdc_id": "173468",
+          "matchedDescription": "Salt, table",
+          "confidence": 0.99,
+          "calories": 0.0,
+          "protein": 0.0,
+          "carbs": 0.0,
+          "fat": 0.0,
+          "alternatives": [
+            {
+              "fdc_id": "321505",
+              "matchedDescription": "Salt, table, iodized",
+              "confidence": 0.97
+            },
+            {
+              "fdc_id": "746775",
+              "matchedDescription": "Salt, table, iodized",
+              "confidence": 0.97
+            },
+            {
+              "fdc_id": "2345062",
+              "matchedDescription": "Green banana, cooked in salt water",
+              "confidence": 0.71
+            }
+          ]
+        }
+      ]
     }
   },
   {
@@ -34,6 +427,152 @@
       "chia seeds": 70.0,
       "honey": 60.0,
       "blueberries": 300.0
+    },
+    "nutrition": {
+      "total": {
+        "calories": 1460.28,
+        "protein": 38.96,
+        "carbs": 243.93,
+        "fat": 42.5
+      },
+      "perServing": {
+        "calories": 365.07,
+        "protein": 9.74,
+        "carbs": 60.98,
+        "fat": 10.62
+      },
+      "byIngredient": [
+        {
+          "name": "rolled oats",
+          "grams": 160.0,
+          "fdc_id": "2343973",
+          "matchedDescription": "Oats, raw",
+          "confidence": 1.0,
+          "calories": 606.4,
+          "protein": 21.04,
+          "carbs": 108.32,
+          "fat": 10.43,
+          "alternatives": [
+            {
+              "fdc_id": "168872",
+              "matchedDescription": "Oat bran, raw",
+              "confidence": 1.0
+            },
+            {
+              "fdc_id": "2346397",
+              "matchedDescription": "Oats, whole grain, steel cut",
+              "confidence": 1.0
+            },
+            {
+              "fdc_id": "169741",
+              "matchedDescription": "Oat flour, partially debranned",
+              "confidence": 1.0
+            }
+          ]
+        },
+        {
+          "name": "almond milk",
+          "grams": 1000.0,
+          "fdc_id": "174832",
+          "matchedDescription": "Beverages, almond milk, unsweetened, shelf stable",
+          "confidence": 1.0,
+          "calories": 150.0,
+          "protein": 4.0,
+          "carbs": 13.1,
+          "fat": 9.6,
+          "alternatives": [
+            {
+              "fdc_id": "168751",
+              "matchedDescription": "Beverages, almond milk, sweetened, vanilla flavor, ready-to-drink",
+              "confidence": 1.0
+            },
+            {
+              "fdc_id": "174820",
+              "matchedDescription": "Beverages, almond milk, chocolate, ready-to-drink",
+              "confidence": 1.0
+            },
+            {
+              "fdc_id": "173187",
+              "matchedDescription": "Beverages, chocolate almond milk, unsweetened, shelf-stable, fortified with vitamin D2 and E",
+              "confidence": 1.0
+            }
+          ]
+        },
+        {
+          "name": "chia seeds",
+          "grams": 70.0,
+          "fdc_id": "2343065",
+          "matchedDescription": "Chia seeds",
+          "confidence": 1.0,
+          "calories": 340.2,
+          "protein": 11.58,
+          "carbs": 29.48,
+          "fat": 21.52,
+          "alternatives": [
+            {
+              "fdc_id": "170554",
+              "matchedDescription": "Seeds, chia seeds, dried",
+              "confidence": 0.82
+            }
+          ]
+        },
+        {
+          "name": "honey",
+          "grams": 60.0,
+          "fdc_id": "169640",
+          "matchedDescription": "Honey",
+          "confidence": 1.0,
+          "calories": 182.4,
+          "protein": 0.18,
+          "carbs": 49.44,
+          "fat": 0.0,
+          "alternatives": [
+            {
+              "fdc_id": "2345841",
+              "matchedDescription": "Honey",
+              "confidence": 1.0
+            },
+            {
+              "fdc_id": "172943",
+              "matchedDescription": "Honey roll sausage, beef",
+              "confidence": 0.74
+            },
+            {
+              "fdc_id": "2345736",
+              "matchedDescription": "Honey butter",
+              "confidence": 0.72
+            }
+          ]
+        },
+        {
+          "name": "blueberries",
+          "grams": 300.0,
+          "fdc_id": "171711",
+          "matchedDescription": "Blueberries, raw",
+          "confidence": 1.0,
+          "calories": 181.28,
+          "protein": 2.16,
+          "carbs": 43.59,
+          "fat": 0.95,
+          "alternatives": [
+            {
+              "fdc_id": "2263889",
+              "matchedDescription": "Blueberries, raw",
+              "confidence": 1.0
+            },
+            {
+              "fdc_id": "2344769",
+              "matchedDescription": "Blueberries, raw",
+              "confidence": 1.0
+            },
+            {
+              "fdc_id": "2346411",
+              "matchedDescription": "Blueberries, raw",
+              "confidence": 1.0
+            }
+          ]
+        }
+      ]
     }
   }
 ]

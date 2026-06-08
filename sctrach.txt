@@ -1,0 +1,18 @@
+Knowns:
+    recipes: [ingredient, weight]
+    macro.csv: [id, weight = 100g, description, calories, macros] 
+
+Goal:
+    determine: macros for a selected recipe 
+
+Process:
+    - match ingredients
+    - determine (recipe ingredient / macro.csv ingredient) ratio
+    - multiply 4 macros for each recipes ingredients with ratio
+
+Matching Algo:
+    - First, match ingredient, return all records with ingredient (first item in description)
+    - next, if possible, determine cooking/prep method/variant (second item in description)
+    - for edge case examples like chicken breast, determine cooking method is sauteed by deducing from recipe name "Chicken stir Fry", which requires matching and ranking prep methods
+    - return all possible options to align with ingredient and prep method, ranking most applicable first
+    - select best fit record from macro

@@ -9,6 +9,8 @@ from typing import Any
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from nutrition import enrich_recipes_with_nutrition
+
 INGREDIENT_PATTERN = re.compile(r"^\s*(\d+(?:\.\d+)?)\s*g\s+(.*)$", re.IGNORECASE)
 TRAILING_COMMA_PATTERN = re.compile(r",(\s*[}\]])")
 
@@ -103,6 +105,10 @@ def main() -> None:
     if recipes:
         output_path = root / "meal-plan-refactored.json"
         payload = [recipe.model_dump(by_alias=True) for recipe in recipes]
+        macro_csv = root / "macro - macro.csv"
+        if macro_csv.exists():
+            payload = enrich_recipes_with_nutrition(payload, macro_csv)
+            print(f"Computed nutrition for {len(payload)} recipes")
         output_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
         print(f"Wrote refactored JSON: {output_path.name} ({len(recipes)} recipes)")
 
