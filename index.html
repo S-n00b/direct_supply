@@ -54,11 +54,53 @@
 
   <script>
     let recipes = [];
+    let recipesLoaded = false;
+
+    function getBasePath() {
+      const segments = location.pathname.split("/").filter(Boolean);
+      if (segments.length === 0) return "/";
+      const first = segments[0];
+      if (first.endsWith(".html")) return "/";
+      return `/${first}/`;
+    }
+
+    function assetUrl(filename) {
+      const base = getBasePath();
+      return `${base}${filename}`.replace(/\/{2,}/g, "/");
+    }
+
+    function escapeHtml(text) {
+      return String(text)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
 
     async function loadRecipes() {
-      const res = await fetch("meal-plan-refactored.json");
-      if (!res.ok) throw new Error(`Failed to load recipes (${res.status})`);
+      const url = assetUrl("meal-plan-refactored.json");
+      const res = await fetch(url);
+      if (!res.ok) {
+        throw new Error(`Failed to load recipes from ${url} (${res.status})`);
+      }
       recipes = await res.json();
+      recipesLoaded = true;
+    }
+
+    function getIngredientRows(recipe) {
+      if (recipe.nutrition?.byIngredient?.length) {
+        return recipe.nutrition.byIngredient;
+      }
+      return Object.entries(recipe.ingredients || {}).map(([name, grams]) => ({
+        name,
+        grams,
+        matchedDescription: null,
+        confidence: 0,
+        calories: null,
+        protein: null,
+        carbs: null,
+        fat: null,
+      }));
     }
 
     function ingredientCount(recipe) {
@@ -66,6 +108,7 @@
     }
 
     function formatMacro(value) {
+      if (value === null || value === undefined || Number.isNaN(Number(value))) return "—";
       return Number(value).toLocaleString(undefined, { maximumFractionDigits: 1 });
     }
 
@@ -103,7 +146,7 @@
           ${recipes.map((r, i) => `
             <a href="#/recipe/${i}"
                class="recipe-card block bg-white rounded-lg border border-dsGray-dark p-5 no-underline text-inherit">
-              <h3 class="text-lg font-semibold text-dsNavy">${r.title}</h3>
+              <h3 class="text-lg font-semibold text-dsNavy">${escapeHtml(r.title)}</h3>
               <div class="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm text-gray-500">
                 <span>Serves <strong class="text-dsGreen">${r.yield}</strong></span>
                 <span>${ingredientCount(r)} ingredients</span>
@@ -125,23 +168,25 @@
       const app = document.getElementById("app");
       const nutrition = recipe.nutrition;
 
-      const rows = (nutrition?.byIngredient || [])
+      const rows = getIngredientRows(recipe)
         .slice()
         .sort((a, b) => b.grams - a.grams)
         .map((item) => `
           <tr class="border-b border-dsGray-dark last:border-0 align-top">
             <td class="py-3 pr-4 text-dsNavy">
-              <div class="font-medium">${item.name}</div>
+              <div class="font-medium">${escapeHtml(item.name)}</div>
               ${item.matchedDescription
-                ? `<div class="mt-1 text-xs text-gray-400 leading-snug">${item.matchedDescription}</div>`
-                : `<div class="mt-1 text-xs text-red-500">No USDA match found</div>`}
+                ? `<div class="mt-1 text-xs text-gray-400 leading-snug">${escapeHtml(item.matchedDescription)}</div>`
+                : recipe.nutrition
+                  ? `<div class="mt-1 text-xs text-red-500">No USDA match found</div>`
+                  : `<div class="mt-1 text-xs text-gray-400">Run <code class="bg-dsGray px-1 rounded">python backend.py</code> to add nutrition data</div>`}
             </td>
             <td class="py-3 pr-4 text-right whitespace-nowrap">${item.matchedDescription ? confidenceBadge(item.confidence) : "—"}</td>
             <td class="py-3 pr-4 text-right font-medium text-dsGreen whitespace-nowrap">${item.grams}g</td>
             <td class="py-3 text-right text-gray-600 whitespace-nowrap">${formatMacro(item.calories)}</td>
-            <td class="py-3 text-right text-gray-600 whitespace-nowrap">${formatMacro(item.protein)}g</td>
-            <td class="py-3 text-right text-gray-600 whitespace-nowrap">${formatMacro(item.carbs)}g</td>
-            <td class="py-3 text-right text-gray-600 whitespace-nowrap">${formatMacro(item.fat)}g</td>
+            <td class="py-3 text-right text-gray-600 whitespace-nowrap">${item.protein === null ? "—" : `${formatMacro(item.protein)}g`}</td>
+            <td class="py-3 text-right text-gray-600 whitespace-nowrap">${item.carbs === null ? "—" : `${formatMacro(item.carbs)}g`}</td>
+            <td class="py-3 text-right text-gray-600 whitespace-nowrap">${item.fat === null ? "—" : `${formatMacro(item.fat)}g`}</td>
           </tr>`)
         .join("");
 
@@ -161,7 +206,7 @@
         </a>
         <div class="bg-white rounded-lg border border-dsGray-dark shadow-sm overflow-hidden">
           <div class="bg-dsGreen-light px-6 py-5 border-b border-dsGray-dark">
-            <h2 class="text-2xl font-bold text-dsNavy">${recipe.title}</h2>
+            <h2 class="text-2xl font-bold text-dsNavy">${escapeHtml(recipe.title)}</h2>
             <p class="text-sm text-gray-500 mt-1">Yield: <strong>${recipe.yield}</strong> serving${recipe.yield !== 1 ? "s" : ""}</p>
           </div>
           ${macroSummary}
@@ -186,6 +231,12 @@
     }
 
     function route() {
+      if (!recipesLoaded) {
+        document.getElementById("app").innerHTML =
+          `<p class="text-gray-500">Loading recipes…</p>`;
+        return;
+      }
+
       const hash = location.hash || "#/";
       const match = hash.match(/^#\/recipe\/(\d+)$/);
       if (match) {
@@ -201,7 +252,7 @@
       .then(route)
       .catch((err) => {
         document.getElementById("app").innerHTML =
-          `<p class="text-red-600">Error: ${err.message}. Run <code class="bg-dsGray px-1 rounded">python backend.py</code> first.</p>`;
+          `<p class="text-red-600">Error: ${escapeHtml(err.message)}. Run <code class="bg-dsGray px-1 rounded">python backend.py</code>, commit <code class="bg-dsGray px-1 rounded">meal-plan-refactored.json</code>, and redeploy.</p>`;
       });
   </script>
 </body>
