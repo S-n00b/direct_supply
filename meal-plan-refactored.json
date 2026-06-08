@@ -1,0 +1,39 @@
+[
+  {
+    "title": "Chicken Stir-Fry",
+    "yield": 2,
+    "ingredients": {
+      "olive oil": 30.0,
+      "chicken breast": 200.0,
+      "broccoli florets": 500.0,
+      "red bell pepper": 250.0,
+      "soy sauce": 60.0,
+      "garlic": 10.0,
+      "ginger": 5.0
+    }
+  },
+  {
+    "title": "Veggie Omelette",
+    "yield": 1,
+    "ingredients": {
+      "large eggs": 100.0,
+      "diced onion": 40.0,
+      "diced tomato": 50.0,
+      "spinach leaves": 20.0,
+      "olive oil": 15.0,
+      "small corn tortillas": 150.0,
+      "Salt and pepper (to taste)": 3.0
+    }
+  },
+  {
+    "title": "Overnight Oats",
+    "yield": 4,
+    "ingredients": {
+      "rolled oats": 160.0,
+      "almond milk": 1000.0,
+      "chia seeds": 70.0,
+      "honey": 60.0,
+      "blueberries": 300.0
+    }
+  }
+]

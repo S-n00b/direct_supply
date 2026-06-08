@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Direct Supply — Meal Plan</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            dsGreen: { DEFAULT: "#007A33", dark: "#005C27", light: "#E8F5EC" },
+            dsNavy: { DEFAULT: "#1B2A4A", light: "#2D4263" },
+            dsGray: { DEFAULT: "#F4F6F8", dark: "#E2E6EA" },
+          },
+          fontFamily: {
+            sans: ["Segoe UI", "system-ui", "-apple-system", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    .recipe-card { transition: transform 0.15s ease, box-shadow 0.15s ease; }
+    .recipe-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(27, 42, 74, 0.12); }
+  </style>
+</head>
+<body class="bg-dsGray text-dsNavy font-sans min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="bg-dsNavy text-white shadow-md">
+    <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 bg-dsGreen rounded flex items-center justify-center font-bold text-sm">DS</div>
+        <div>
+          <h1 class="text-lg font-semibold tracking-wide">Direct Supply</h1>
+          <p class="text-xs text-gray-300">Meal Plan Recipes</p>
+        </div>
+      </div>
+      <a id="nav-home" href="#/" class="text-sm text-dsGreen hover:text-white transition-colors hidden">All Recipes</a>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <main id="app" class="flex-1 max-w-5xl mx-auto w-full px-6 py-8">
+    <p class="text-gray-500">Loading recipes…</p>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-dsGray-dark py-4 text-center text-xs text-gray-400">
+    Direct Supply KATA Assessment &mdash; Recipe Cleaner + Viewer
+  </footer>
+
+  <script>
+    let recipes = [];
+
+    async function loadRecipes() {
+      const res = await fetch("meal-plan-refactored.json");
+      if (!res.ok) throw new Error(`Failed to load recipes (${res.status})`);
+      recipes = await res.json();
+    }
+
+    function ingredientCount(recipe) {
+      return Object.keys(recipe.ingredients).length;
+    }
+
+    function renderList() {
+      document.getElementById("nav-home").classList.add("hidden");
+      const app = document.getElementById("app");
+      app.innerHTML = `
+        <div class="mb-8">
+          <h2 class="text-2xl font-bold text-dsNavy">Available Recipes</h2>
+          <p class="text-gray-500 mt-1">Select a recipe to view its ingredients.</p>
+        </div>
+        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          ${recipes.map((r, i) => `
+            <a href="#/recipe/${i}"
+               class="recipe-card block bg-white rounded-lg border border-dsGray-dark p-5 no-underline text-inherit">
+              <h3 class="text-lg font-semibold text-dsNavy">${r.title}</h3>
+              <div class="mt-3 flex gap-4 text-sm text-gray-500">
+                <span>Serves <strong class="text-dsGreen">${r.yield}</strong></span>
+                <span>${ingredientCount(r)} ingredients</span>
+              </div>
+              <span class="inline-block mt-4 text-sm font-medium text-dsGreen hover:text-dsGreen-dark">
+                View ingredients &rarr;
+              </span>
+            </a>
+          `).join("")}
+        </div>`;
+    }
+
+    function renderDetail(index) {
+      const recipe = recipes[index];
+      if (!recipe) { location.hash = "#/"; return; }
+
+      document.getElementById("nav-home").classList.remove("hidden");
+      const app = document.getElementById("app");
+
+      const rows = Object.entries(recipe.ingredients)
+        .sort((a, b) => b[1] - a[1])
+        .map(([name, grams]) => `
+          <tr class="border-b border-dsGray-dark last:border-0">
+            <td class="py-3 pr-4 text-dsNavy">${name}</td>
+            <td class="py-3 text-right font-medium text-dsGreen whitespace-nowrap">${grams}g</td>
+          </tr>`)
+        .join("");
+
+      app.innerHTML = `
+        <a href="#/" class="inline-flex items-center text-sm text-dsGreen hover:text-dsGreen-dark mb-6 no-underline">
+          &larr; Back to all recipes
+        </a>
+        <div class="bg-white rounded-lg border border-dsGray-dark shadow-sm overflow-hidden">
+          <div class="bg-dsGreen-light px-6 py-5 border-b border-dsGray-dark">
+            <h2 class="text-2xl font-bold text-dsNavy">${recipe.title}</h2>
+            <p class="text-sm text-gray-500 mt-1">Yield: <strong>${recipe.yield}</strong> serving${recipe.yield !== 1 ? "s" : ""}</p>
+          </div>
+          <div class="px-6 py-5">
+            <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-3">Ingredients</h3>
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="border-b-2 border-dsNavy text-left text-xs uppercase tracking-wider text-gray-400">
+                  <th class="pb-2">Ingredient</th>
+                  <th class="pb-2 text-right">Weight</th>
+                </tr>
+              </thead>
+              <tbody>${rows}</tbody>
+            </table>
+          </div>
+        </div>`;
+    }
+
+    function route() {
+      const hash = location.hash || "#/";
+      const match = hash.match(/^#\/recipe\/(\d+)$/);
+      if (match) {
+        renderDetail(parseInt(match[1], 10));
+      } else {
+        renderList();
+      }
+    }
+
+    window.addEventListener("hashchange", route);
+
+    loadRecipes()
+      .then(route)
+      .catch((err) => {
+        document.getElementById("app").innerHTML =
+          `<p class="text-red-600">Error: ${err.message}. Run <code class="bg-dsGray px-1 rounded">python backend.py</code> first.</p>`;
+      });
+  </script>
+</body>
+</html>
